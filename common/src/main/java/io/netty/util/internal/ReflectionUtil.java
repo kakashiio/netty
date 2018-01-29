@@ -27,7 +27,7 @@ public final class ReflectionUtil {
      * The caller must check if it returns {@code null} and if not handle the returned exception.
      */
     public static Throwable trySetAccessible(AccessibleObject object, boolean checkAccessible) {
-        if (checkAccessible && PlatformDependent0.isExplicitNoReflectiveAccessible()) {
+        if (checkAccessible && !PlatformDependent0.isExplicitTryReflectionSetAccessible()) {
             return new UnsupportedOperationException("Reflective setAccessible(true) disabled");
         }
         try {

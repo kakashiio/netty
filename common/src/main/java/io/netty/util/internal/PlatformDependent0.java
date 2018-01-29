@@ -46,7 +46,7 @@ final class PlatformDependent0 {
 
     private static final Throwable UNSAFE_UNAVAILABILITY_CAUSE;
     private static final Object INTERNAL_UNSAFE;
-    private static final boolean IS_EXPLICIT_NO_REFLECTIVE_ACCESSIBLE = explicitNoReflectiveAccessible0();
+    private static final boolean IS_EXPLICIT_TRY_REFLECTIVION_SET_ACCESSIBLE = explicitTryReflectionSetAccessible0();
 
     static final Unsafe UNSAFE;
 
@@ -801,13 +801,13 @@ final class PlatformDependent0 {
         return android;
     }
 
-    private static boolean explicitNoReflectiveAccessible0() {
+    private static boolean explicitTryReflectionSetAccessible0() {
         // we disable reflective access
-        return SystemPropertyUtil.getBoolean("io.netty.noReflectiveAccessible", javaVersion() >= 9);
+        return SystemPropertyUtil.getBoolean("io.netty.tryReflectionSetAccessible", javaVersion() < 9);
     }
 
-    static boolean isExplicitNoReflectiveAccessible() {
-        return IS_EXPLICIT_NO_REFLECTIVE_ACCESSIBLE;
+    static boolean isExplicitTryReflectionSetAccessible() {
+        return IS_EXPLICIT_TRY_REFLECTIVION_SET_ACCESSIBLE;
     }
 
     static int javaVersion() {
